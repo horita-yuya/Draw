@@ -1,0 +1,438 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		64AC43EE2433385E009E8BD6 /* DrawingKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 64AC43EC2433385E009E8BD6 /* DrawingKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64AC43FB24333A41009E8BD6 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AC43FA24333A41009E8BD6 /* CanvasView.swift */; };
+		64AC43FE24333A53009E8BD6 /* InkingTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AC43FD24333A53009E8BD6 /* InkingTool.swift */; };
+		64AC440024333A5E009E8BD6 /* EraserTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AC43FF24333A5E009E8BD6 /* EraserTool.swift */; };
+		64AC440224333A68009E8BD6 /* LassoTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AC440124333A68009E8BD6 /* LassoTool.swift */; };
+		64AC440424333A74009E8BD6 /* DrawingTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AC440324333A74009E8BD6 /* DrawingTool.swift */; };
+		64AC441124343D04009E8BD6 /* UIViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AC441024343D04009E8BD6 /* UIViewExt.swift */; };
+		64AC443324358217009E8BD6 /* UIBezierPathExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AC443224358217009E8BD6 /* UIBezierPathExt.swift */; };
+		64AC44352435823C009E8BD6 /* CAShapeLayerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AC44342435823C009E8BD6 /* CAShapeLayerExt.swift */; };
+		81B2588A2436EFFB007D2ABE /* CanvasImageViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B258892436EFFB007D2ABE /* CanvasImageViewProtocol.swift */; };
+		81B2589524371E7C007D2ABE /* LassoContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B2589424371E7C007D2ABE /* LassoContext.swift */; };
+		81B2589724371E88007D2ABE /* EraserContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B2589624371E88007D2ABE /* EraserContext.swift */; };
+		81B25899243727A0007D2ABE /* InkingContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B25898243727A0007D2ABE /* InkingContext.swift */; };
+		81B2589D243B0F9A007D2ABE /* CanvasEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B2589C243B0F9A007D2ABE /* CanvasEvent.swift */; };
+		81B2589F243B1252007D2ABE /* CanvasEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B2589E243B1252007D2ABE /* CanvasEventController.swift */; };
+		81B258A5243B5EB6007D2ABE /* PKInkingToolExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B258A4243B5EB6007D2ABE /* PKInkingToolExt.swift */; };
+		81B258A7243B5ED6007D2ABE /* PKEraserToolExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B258A6243B5ED6007D2ABE /* PKEraserToolExt.swift */; };
+		FAA4D3A82433888A008049EB /* InnerCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA4D3A72433888A008049EB /* InnerCanvasView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		64AC43E92433385E009E8BD6 /* DrawingKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DrawingKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		64AC43EC2433385E009E8BD6 /* DrawingKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawingKit.h; sourceTree = "<group>"; };
+		64AC43ED2433385E009E8BD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		64AC43FA24333A41009E8BD6 /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
+		64AC43FD24333A53009E8BD6 /* InkingTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InkingTool.swift; sourceTree = "<group>"; };
+		64AC43FF24333A5E009E8BD6 /* EraserTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EraserTool.swift; sourceTree = "<group>"; };
+		64AC440124333A68009E8BD6 /* LassoTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LassoTool.swift; sourceTree = "<group>"; };
+		64AC440324333A74009E8BD6 /* DrawingTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingTool.swift; sourceTree = "<group>"; };
+		64AC441024343D04009E8BD6 /* UIViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExt.swift; sourceTree = "<group>"; };
+		64AC443224358217009E8BD6 /* UIBezierPathExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBezierPathExt.swift; sourceTree = "<group>"; };
+		64AC44342435823C009E8BD6 /* CAShapeLayerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAShapeLayerExt.swift; sourceTree = "<group>"; };
+		81B258892436EFFB007D2ABE /* CanvasImageViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasImageViewProtocol.swift; sourceTree = "<group>"; };
+		81B2589424371E7C007D2ABE /* LassoContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LassoContext.swift; sourceTree = "<group>"; };
+		81B2589624371E88007D2ABE /* EraserContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EraserContext.swift; sourceTree = "<group>"; };
+		81B25898243727A0007D2ABE /* InkingContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InkingContext.swift; sourceTree = "<group>"; };
+		81B2589C243B0F9A007D2ABE /* CanvasEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasEvent.swift; sourceTree = "<group>"; };
+		81B2589E243B1252007D2ABE /* CanvasEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasEventController.swift; sourceTree = "<group>"; };
+		81B258A4243B5EB6007D2ABE /* PKInkingToolExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKInkingToolExt.swift; sourceTree = "<group>"; };
+		81B258A6243B5ED6007D2ABE /* PKEraserToolExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKEraserToolExt.swift; sourceTree = "<group>"; };
+		FAA4D3A72433888A008049EB /* InnerCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCanvasView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		64AC43E62433385E009E8BD6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		64AC43DF2433385E009E8BD6 = {
+			isa = PBXGroup;
+			children = (
+				64AC43EB2433385E009E8BD6 /* DrawingKit */,
+				64AC43EA2433385E009E8BD6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		64AC43EA2433385E009E8BD6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				64AC43E92433385E009E8BD6 /* DrawingKit.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		64AC43EB2433385E009E8BD6 /* DrawingKit */ = {
+			isa = PBXGroup;
+			children = (
+				64AC440F24343CF7009E8BD6 /* Extensions */,
+				64AC43FC24333A45009E8BD6 /* Model */,
+				64AC43F924333A37009E8BD6 /* View */,
+				64AC43EC2433385E009E8BD6 /* DrawingKit.h */,
+				64AC43ED2433385E009E8BD6 /* Info.plist */,
+			);
+			path = DrawingKit;
+			sourceTree = "<group>";
+		};
+		64AC43F924333A37009E8BD6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				81B2589324371E65007D2ABE /* Context */,
+				64AC43FA24333A41009E8BD6 /* CanvasView.swift */,
+				FAA4D3A72433888A008049EB /* InnerCanvasView.swift */,
+				81B258892436EFFB007D2ABE /* CanvasImageViewProtocol.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		64AC43FC24333A45009E8BD6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				64AC43FD24333A53009E8BD6 /* InkingTool.swift */,
+				64AC43FF24333A5E009E8BD6 /* EraserTool.swift */,
+				64AC440124333A68009E8BD6 /* LassoTool.swift */,
+				64AC440324333A74009E8BD6 /* DrawingTool.swift */,
+				81B2589C243B0F9A007D2ABE /* CanvasEvent.swift */,
+				81B2589E243B1252007D2ABE /* CanvasEventController.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		64AC440F24343CF7009E8BD6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				64AC441024343D04009E8BD6 /* UIViewExt.swift */,
+				64AC443224358217009E8BD6 /* UIBezierPathExt.swift */,
+				64AC44342435823C009E8BD6 /* CAShapeLayerExt.swift */,
+				81B258A4243B5EB6007D2ABE /* PKInkingToolExt.swift */,
+				81B258A6243B5ED6007D2ABE /* PKEraserToolExt.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		81B2589324371E65007D2ABE /* Context */ = {
+			isa = PBXGroup;
+			children = (
+				81B2589424371E7C007D2ABE /* LassoContext.swift */,
+				81B2589624371E88007D2ABE /* EraserContext.swift */,
+				81B25898243727A0007D2ABE /* InkingContext.swift */,
+			);
+			path = Context;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		64AC43E42433385E009E8BD6 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64AC43EE2433385E009E8BD6 /* DrawingKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		64AC43E82433385E009E8BD6 /* DrawingKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 64AC43F12433385E009E8BD6 /* Build configuration list for PBXNativeTarget "DrawingKit" */;
+			buildPhases = (
+				64AC43E42433385E009E8BD6 /* Headers */,
+				64AC43E52433385E009E8BD6 /* Sources */,
+				64AC43E62433385E009E8BD6 /* Frameworks */,
+				64AC43E72433385E009E8BD6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DrawingKit;
+			productName = DrawingKit;
+			productReference = 64AC43E92433385E009E8BD6 /* DrawingKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		64AC43E02433385E009E8BD6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1120;
+				ORGANIZATIONNAME = hy;
+				TargetAttributes = {
+					64AC43E82433385E009E8BD6 = {
+						CreatedOnToolsVersion = 11.2.1;
+						LastSwiftMigration = 1120;
+					};
+				};
+			};
+			buildConfigurationList = 64AC43E32433385E009E8BD6 /* Build configuration list for PBXProject "DrawingKit" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 64AC43DF2433385E009E8BD6;
+			productRefGroup = 64AC43EA2433385E009E8BD6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				64AC43E82433385E009E8BD6 /* DrawingKit */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		64AC43E72433385E009E8BD6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		64AC43E52433385E009E8BD6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64AC441124343D04009E8BD6 /* UIViewExt.swift in Sources */,
+				81B258A7243B5ED6007D2ABE /* PKEraserToolExt.swift in Sources */,
+				64AC44352435823C009E8BD6 /* CAShapeLayerExt.swift in Sources */,
+				64AC43FB24333A41009E8BD6 /* CanvasView.swift in Sources */,
+				FAA4D3A82433888A008049EB /* InnerCanvasView.swift in Sources */,
+				64AC440024333A5E009E8BD6 /* EraserTool.swift in Sources */,
+				64AC440224333A68009E8BD6 /* LassoTool.swift in Sources */,
+				81B2589D243B0F9A007D2ABE /* CanvasEvent.swift in Sources */,
+				64AC443324358217009E8BD6 /* UIBezierPathExt.swift in Sources */,
+				81B25899243727A0007D2ABE /* InkingContext.swift in Sources */,
+				81B2588A2436EFFB007D2ABE /* CanvasImageViewProtocol.swift in Sources */,
+				81B258A5243B5EB6007D2ABE /* PKInkingToolExt.swift in Sources */,
+				81B2589F243B1252007D2ABE /* CanvasEventController.swift in Sources */,
+				64AC440424333A74009E8BD6 /* DrawingTool.swift in Sources */,
+				81B2589724371E88007D2ABE /* EraserContext.swift in Sources */,
+				81B2589524371E7C007D2ABE /* LassoContext.swift in Sources */,
+				64AC43FE24333A53009E8BD6 /* InkingTool.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		64AC43EF2433385E009E8BD6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		64AC43F02433385E009E8BD6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		64AC43F22433385E009E8BD6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = DrawingKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hy.DrawingKit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		64AC43F32433385E009E8BD6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = DrawingKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hy.DrawingKit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		64AC43E32433385E009E8BD6 /* Build configuration list for PBXProject "DrawingKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				64AC43EF2433385E009E8BD6 /* Debug */,
+				64AC43F02433385E009E8BD6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		64AC43F12433385E009E8BD6 /* Build configuration list for PBXNativeTarget "DrawingKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				64AC43F22433385E009E8BD6 /* Debug */,
+				64AC43F32433385E009E8BD6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 64AC43E02433385E009E8BD6 /* Project object */;
+}
