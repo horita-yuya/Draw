@@ -11,22 +11,29 @@
 		81B2588E2436F100007D2ABE /* PreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81B2588C2436F100007D2ABE /* PreviewViewController.xib */; };
 		81B258902436F6EF007D2ABE /* SampleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B2588F2436F6EF007D2ABE /* SampleImageView.swift */; };
 		81B258922436F6FB007D2ABE /* SampleImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81B258912436F6FB007D2ABE /* SampleImageView.xib */; };
+		81C5749F24779BBE00F739CD /* Draw.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81C5749E24779BBE00F739CD /* Draw.framework */; };
+		81C574A024779BBE00F739CD /* Draw.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 81C5749E24779BBE00F739CD /* Draw.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FAA4D38924337391008049EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA4D38824337391008049EB /* AppDelegate.swift */; };
 		FAA4D38D24337391008049EB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA4D38C24337391008049EB /* ViewController.swift */; };
 		FAA4D39024337391008049EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAA4D38E24337391008049EB /* Main.storyboard */; };
 		FAA4D39224337396008049EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAA4D39124337396008049EB /* Assets.xcassets */; };
 		FAA4D39524337396008049EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAA4D39324337396008049EB /* LaunchScreen.storyboard */; };
-		FAA4D3A3243373C1008049EB /* DrawingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA4D3A1243373B5008049EB /* DrawingKit.framework */; };
-		FAA4D3A4243373C1008049EB /* DrawingKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FAA4D3A1243373B5008049EB /* DrawingKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		FAA4D3A0243373B5008049EB /* PBXContainerItemProxy */ = {
+		819DE75C24779BF9002064C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = FAA4D39C243373B5008049EB /* DrawingKit.xcodeproj */;
+			containerPortal = FAA4D39C243373B5008049EB /* Draw.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 64AC43E92433385E009E8BD6;
-			remoteInfo = DrawingKit;
+			remoteInfo = Draw;
+		};
+		819DE75E24779BFF002064C2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAA4D39C243373B5008049EB /* Draw.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 64AC43E82433385E009E8BD6;
+			remoteInfo = Draw;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -37,7 +44,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				FAA4D3A4243373C1008049EB /* DrawingKit.framework in Embed Frameworks */,
+				81C574A024779BBE00F739CD /* Draw.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -49,6 +56,7 @@
 		81B2588C2436F100007D2ABE /* PreviewViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreviewViewController.xib; sourceTree = "<group>"; };
 		81B2588F2436F6EF007D2ABE /* SampleImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleImageView.swift; sourceTree = "<group>"; };
 		81B258912436F6FB007D2ABE /* SampleImageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SampleImageView.xib; sourceTree = "<group>"; };
+		81C5749E24779BBE00F739CD /* Draw.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Draw.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA4D38524337391008049EB /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA4D38824337391008049EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAA4D38C24337391008049EB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -56,7 +64,7 @@
 		FAA4D39124337396008049EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAA4D39424337396008049EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FAA4D39624337396008049EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FAA4D39C243373B5008049EB /* DrawingKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DrawingKit.xcodeproj; path = ../DrawingKit.xcodeproj; sourceTree = "<group>"; };
+		FAA4D39C243373B5008049EB /* Draw.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Draw.xcodeproj; path = ../Draw.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,17 +72,25 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAA4D3A3243373C1008049EB /* DrawingKit.framework in Frameworks */,
+				81C5749F24779BBE00F739CD /* Draw.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		819DE75924779BF8002064C2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				819DE75D24779BF9002064C2 /* Draw.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		FAA4D37C24337391008049EB = {
 			isa = PBXGroup;
 			children = (
-				FAA4D39C243373B5008049EB /* DrawingKit.xcodeproj */,
+				FAA4D39C243373B5008049EB /* Draw.xcodeproj */,
 				FAA4D38724337391008049EB /* Example */,
 				FAA4D38624337391008049EB /* Products */,
 				FAA4D3A2243373C1008049EB /* Frameworks */,
@@ -106,17 +122,10 @@
 			path = Example;
 			sourceTree = "<group>";
 		};
-		FAA4D39D243373B5008049EB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				FAA4D3A1243373B5008049EB /* DrawingKit.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		FAA4D3A2243373C1008049EB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				81C5749E24779BBE00F739CD /* Draw.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -136,6 +145,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				819DE75F24779BFF002064C2 /* PBXTargetDependency */,
 			);
 			name = Example;
 			productName = Example;
@@ -170,8 +180,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = FAA4D39D243373B5008049EB /* Products */;
-					ProjectRef = FAA4D39C243373B5008049EB /* DrawingKit.xcodeproj */;
+					ProductGroup = 819DE75924779BF8002064C2 /* Products */;
+					ProjectRef = FAA4D39C243373B5008049EB /* Draw.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -182,11 +192,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		FAA4D3A1243373B5008049EB /* DrawingKit.framework */ = {
+		819DE75D24779BF9002064C2 /* Draw.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = DrawingKit.framework;
-			remoteRef = FAA4D3A0243373B5008049EB /* PBXContainerItemProxy */;
+			path = Draw.framework;
+			remoteRef = 819DE75C24779BF9002064C2 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -219,6 +229,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		819DE75F24779BFF002064C2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Draw;
+			targetProxy = 819DE75E24779BFF002064C2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		FAA4D38E24337391008049EB /* Main.storyboard */ = {

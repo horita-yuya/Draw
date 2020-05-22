@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		64AC43EE2433385E009E8BD6 /* DrawingKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 64AC43EC2433385E009E8BD6 /* DrawingKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		64AC43EE2433385E009E8BD6 /* Draw.h in Headers */ = {isa = PBXBuildFile; fileRef = 64AC43EC2433385E009E8BD6 /* Draw.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		64AC43FB24333A41009E8BD6 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AC43FA24333A41009E8BD6 /* CanvasView.swift */; };
 		64AC43FE24333A53009E8BD6 /* InkingTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AC43FD24333A53009E8BD6 /* InkingTool.swift */; };
 		64AC440024333A5E009E8BD6 /* EraserTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64AC43FF24333A5E009E8BD6 /* EraserTool.swift */; };
@@ -27,8 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		64AC43E92433385E009E8BD6 /* DrawingKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DrawingKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		64AC43EC2433385E009E8BD6 /* DrawingKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawingKit.h; sourceTree = "<group>"; };
+		64AC43E92433385E009E8BD6 /* Draw.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Draw.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		64AC43EC2433385E009E8BD6 /* Draw.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Draw.h; sourceTree = "<group>"; };
 		64AC43ED2433385E009E8BD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64AC43FA24333A41009E8BD6 /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
 		64AC43FD24333A53009E8BD6 /* InkingTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InkingTool.swift; sourceTree = "<group>"; };
@@ -62,7 +62,7 @@
 		64AC43DF2433385E009E8BD6 = {
 			isa = PBXGroup;
 			children = (
-				64AC43EB2433385E009E8BD6 /* DrawingKit */,
+				64AC43EB2433385E009E8BD6 /* Draw */,
 				64AC43EA2433385E009E8BD6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -70,21 +70,21 @@
 		64AC43EA2433385E009E8BD6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				64AC43E92433385E009E8BD6 /* DrawingKit.framework */,
+				64AC43E92433385E009E8BD6 /* Draw.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		64AC43EB2433385E009E8BD6 /* DrawingKit */ = {
+		64AC43EB2433385E009E8BD6 /* Draw */ = {
 			isa = PBXGroup;
 			children = (
 				64AC440F24343CF7009E8BD6 /* Extensions */,
 				64AC43FC24333A45009E8BD6 /* Model */,
 				64AC43F924333A37009E8BD6 /* View */,
-				64AC43EC2433385E009E8BD6 /* DrawingKit.h */,
+				64AC43EC2433385E009E8BD6 /* Draw.h */,
 				64AC43ED2433385E009E8BD6 /* Info.plist */,
 			);
-			path = DrawingKit;
+			path = Draw;
 			sourceTree = "<group>";
 		};
 		64AC43F924333A37009E8BD6 /* View */ = {
@@ -139,16 +139,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64AC43EE2433385E009E8BD6 /* DrawingKit.h in Headers */,
+				64AC43EE2433385E009E8BD6 /* Draw.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		64AC43E82433385E009E8BD6 /* DrawingKit */ = {
+		64AC43E82433385E009E8BD6 /* Draw */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 64AC43F12433385E009E8BD6 /* Build configuration list for PBXNativeTarget "DrawingKit" */;
+			buildConfigurationList = 64AC43F12433385E009E8BD6 /* Build configuration list for PBXNativeTarget "Draw" */;
 			buildPhases = (
 				64AC43E42433385E009E8BD6 /* Headers */,
 				64AC43E52433385E009E8BD6 /* Sources */,
@@ -159,9 +159,9 @@
 			);
 			dependencies = (
 			);
-			name = DrawingKit;
+			name = Draw;
 			productName = DrawingKit;
-			productReference = 64AC43E92433385E009E8BD6 /* DrawingKit.framework */;
+			productReference = 64AC43E92433385E009E8BD6 /* Draw.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -179,7 +179,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 64AC43E32433385E009E8BD6 /* Build configuration list for PBXProject "DrawingKit" */;
+			buildConfigurationList = 64AC43E32433385E009E8BD6 /* Build configuration list for PBXProject "Draw" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -192,7 +192,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				64AC43E82433385E009E8BD6 /* DrawingKit */,
+				64AC43E82433385E009E8BD6 /* Draw */,
 			);
 		};
 /* End PBXProject section */
@@ -363,17 +363,17 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = DrawingKit/Info.plist;
+				INFOPLIST_FILE = Draw/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.hy.DrawingKit;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				MARKETING_VERSION = 0.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hy.Draw;
+				PRODUCT_NAME = Draw;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -390,17 +390,17 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = DrawingKit/Info.plist;
+				INFOPLIST_FILE = Draw/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.hy.DrawingKit;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				MARKETING_VERSION = 0.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hy.Draw;
+				PRODUCT_NAME = Draw;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -410,7 +410,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		64AC43E32433385E009E8BD6 /* Build configuration list for PBXProject "DrawingKit" */ = {
+		64AC43E32433385E009E8BD6 /* Build configuration list for PBXProject "Draw" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				64AC43EF2433385E009E8BD6 /* Debug */,
@@ -419,7 +419,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		64AC43F12433385E009E8BD6 /* Build configuration list for PBXNativeTarget "DrawingKit" */ = {
+		64AC43F12433385E009E8BD6 /* Build configuration list for PBXNativeTarget "Draw" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				64AC43F22433385E009E8BD6 /* Debug */,

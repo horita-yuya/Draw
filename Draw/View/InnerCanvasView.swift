@@ -219,26 +219,18 @@ extension InnerCanvasView {
         eraserContext.eraserLayer?.position = location
         CATransaction.commit()
         
-        let rect = CGRect(
-            x: location.x - 20,
-            y: location.y - 20,
-            width: 40,
-            height: 40
-        )
+        let rect = eraserContext.eraserLayer?.frame ?? .zero
 
         for context in inkingContexts {
             if context.points.first(where: { rect.contains($0) }) != nil {
-                guard let layer = context.pathLayer, layer.superlayer != nil else { continue }
-                
-                layer.removeFromSuperlayer()
-                registerUndoEraser(inkingLayer: layer)
-            }
-            
-            if let imageLayer = context.imageLayer,
-                imageLayer.superlayer != nil,
-                imageLayer.frame.intersects(rect) {
-                imageLayer.removeFromSuperlayer()
-                registerUndoEraser(inkingLayer: imageLayer)
+                if let layer = context.pathLayer, layer.superlayer != nil {
+                    layer.removeFromSuperlayer()
+                    registerUndoEraser(inkingLayer: layer)
+                }
+                if let layer = context.imageLayer, layer.superlayer != nil {
+                    layer.removeFromSuperlayer()
+                    registerUndoEraser(inkingLayer: layer)
+                }
             }
         }
     }

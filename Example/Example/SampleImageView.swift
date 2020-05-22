@@ -1,5 +1,5 @@
 import UIKit
-import DrawingKit
+import Draw
 
 final class SampleImageView: UIView, CanvasImageViewProtocol {
     @IBOutlet private(set) var imageView: UIImageView!

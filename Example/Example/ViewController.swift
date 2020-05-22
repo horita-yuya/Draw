@@ -1,5 +1,5 @@
 import UIKit
-import DrawingKit
+import Draw
 
 final class ViewController: UIViewController {
     @IBOutlet private var canvasView: CanvasView!
