@@ -22,8 +22,9 @@ extension CAShapeLayer {
             lineCap = .round
 
         } else if let eraserTool = tool as? EraserTool {
-            fillColor = UIColor.clear.cgColor
-            strokeColor = UIColor.white.cgColor
+            fillColor = UIColor.red.cgColor
+            strokeColor = UIColor.black.cgColor
+            lineWidth = 3
             lineWidth = eraserTool.size
             lineJoin = .round
             lineCap = .round

@@ -17,6 +17,14 @@ public class CanvasView: UIView {
         set { innerCanvas = newValue }
     }
     
+    var data: Data? {
+        if #available(iOS 13, *) {
+            return pkCanvas.drawing.dataRepresentation()
+        } else {
+            return nil
+        }
+    }
+    
     public var tool: DrawingTool {
         get {
             if #available(iOS 13, *), usePencilKitIfPossible {
@@ -67,27 +75,13 @@ public class CanvasView: UIView {
             return pkCanvas.drawing.image(from: bounds, scale: 0)
             
         } else {
-            return canvas.captureBackground()
-        }
-    }
-    
-    public func addFrameView(frameView: UIView) {
-        if #available(iOS 13, *), usePencilKitIfPossible {
-            // Do nothing
-        } else {
-            canvas.addSubview(frameView)
-            frameView.translatesAutoresizingMaskIntoConstraints = false
-            frameView.edgesToSuperview()
-        }
-    }
-    
-    public func addHeaderFrameView(headerFrameView: UIView, height: CGFloat) {
-        if #available(iOS 13, *), usePencilKitIfPossible {
-            // Do nothing
-        } else {
-            canvas.addSubview(headerFrameView)
-            headerFrameView.translatesAutoresizingMaskIntoConstraints = false
-            headerFrameView.edgesToTop(with: height)
+            let format = UIGraphicsImageRendererFormat()
+            format.scale = UIScreen.main.scale
+            let render = UIGraphicsImageRenderer(bounds: bounds, format: format)
+            
+            return render.image { ctx in
+                layer.render(in: ctx.cgContext)
+            }
         }
     }
     

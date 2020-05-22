@@ -20,8 +20,6 @@
 		81B2589524371E7C007D2ABE /* LassoContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B2589424371E7C007D2ABE /* LassoContext.swift */; };
 		81B2589724371E88007D2ABE /* EraserContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B2589624371E88007D2ABE /* EraserContext.swift */; };
 		81B25899243727A0007D2ABE /* InkingContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B25898243727A0007D2ABE /* InkingContext.swift */; };
-		81B2589D243B0F9A007D2ABE /* CanvasEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B2589C243B0F9A007D2ABE /* CanvasEvent.swift */; };
-		81B2589F243B1252007D2ABE /* CanvasEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B2589E243B1252007D2ABE /* CanvasEventController.swift */; };
 		81B258A5243B5EB6007D2ABE /* PKInkingToolExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B258A4243B5EB6007D2ABE /* PKInkingToolExt.swift */; };
 		81B258A7243B5ED6007D2ABE /* PKEraserToolExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B258A6243B5ED6007D2ABE /* PKEraserToolExt.swift */; };
 		FAA4D3A82433888A008049EB /* InnerCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA4D3A72433888A008049EB /* InnerCanvasView.swift */; };
@@ -43,8 +41,6 @@
 		81B2589424371E7C007D2ABE /* LassoContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LassoContext.swift; sourceTree = "<group>"; };
 		81B2589624371E88007D2ABE /* EraserContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EraserContext.swift; sourceTree = "<group>"; };
 		81B25898243727A0007D2ABE /* InkingContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InkingContext.swift; sourceTree = "<group>"; };
-		81B2589C243B0F9A007D2ABE /* CanvasEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasEvent.swift; sourceTree = "<group>"; };
-		81B2589E243B1252007D2ABE /* CanvasEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasEventController.swift; sourceTree = "<group>"; };
 		81B258A4243B5EB6007D2ABE /* PKInkingToolExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKInkingToolExt.swift; sourceTree = "<group>"; };
 		81B258A6243B5ED6007D2ABE /* PKEraserToolExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKEraserToolExt.swift; sourceTree = "<group>"; };
 		FAA4D3A72433888A008049EB /* InnerCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCanvasView.swift; sourceTree = "<group>"; };
@@ -107,8 +103,6 @@
 				64AC43FF24333A5E009E8BD6 /* EraserTool.swift */,
 				64AC440124333A68009E8BD6 /* LassoTool.swift */,
 				64AC440324333A74009E8BD6 /* DrawingTool.swift */,
-				81B2589C243B0F9A007D2ABE /* CanvasEvent.swift */,
-				81B2589E243B1252007D2ABE /* CanvasEventController.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -222,12 +216,10 @@
 				FAA4D3A82433888A008049EB /* InnerCanvasView.swift in Sources */,
 				64AC440024333A5E009E8BD6 /* EraserTool.swift in Sources */,
 				64AC440224333A68009E8BD6 /* LassoTool.swift in Sources */,
-				81B2589D243B0F9A007D2ABE /* CanvasEvent.swift in Sources */,
 				64AC443324358217009E8BD6 /* UIBezierPathExt.swift in Sources */,
 				81B25899243727A0007D2ABE /* InkingContext.swift in Sources */,
 				81B2588A2436EFFB007D2ABE /* CanvasImageViewProtocol.swift in Sources */,
 				81B258A5243B5EB6007D2ABE /* PKInkingToolExt.swift in Sources */,
-				81B2589F243B1252007D2ABE /* CanvasEventController.swift in Sources */,
 				64AC440424333A74009E8BD6 /* DrawingTool.swift in Sources */,
 				81B2589724371E88007D2ABE /* EraserContext.swift in Sources */,
 				81B2589524371E7C007D2ABE /* LassoContext.swift in Sources */,

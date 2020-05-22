@@ -41,7 +41,6 @@ private extension ViewController {
         header.text = "Header"
         header.font = .boldSystemFont(ofSize: 40)
         header.textAlignment = .center
-        canvasView.addHeaderFrameView(headerFrameView: header, height: 50)
 //        canvasView.addBackgroundImage(image: UIImage(named: "nachtwacht"))
     }
     

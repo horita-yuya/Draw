@@ -1,9 +1,14 @@
 import UIKit
 
 final class LassoContext {
+    enum Mode {
+        case search
+        case move
+    }
+    
+    var mode: Mode = .search
     var lassoLayer: CAShapeLayer?
-    var lassoClosed: Bool = false
-    var lassoEnclosedLayers: [CALayer] = []
+    var lassoEnclosedInkingContexts: [InkingContext] = []
     var points: [CGPoint] = []
 
     var moveCurrentPotision: CGPoint?
@@ -15,9 +20,9 @@ final class LassoContext {
         lassoLayer?.removeAllAnimations()
         lassoLayer?.removeFromSuperlayer()
         lassoLayer = nil
-        lassoClosed = false
-        lassoEnclosedLayers = []
+        lassoEnclosedInkingContexts = []
         points = []
+        mode = .search
 
         moveCurrentPotision = nil
         

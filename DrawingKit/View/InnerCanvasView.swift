@@ -1,8 +1,8 @@
 import UIKit
 import func AVFoundation.AVMakeRect
+import MetalKit
 
 private final class ImageLayer: CALayer {}
-private final class EraserLayer: CAShapeLayer {}
 
 final class InnerCanvasView: UIImageView {
     var canvasImageView: CanvasImageViewProtocol? {
@@ -10,7 +10,6 @@ final class InnerCanvasView: UIImageView {
             guard let imageView = canvasImageView else { return }
             oldValue?.removeFromSuperview()
             addSubview(imageView)
-            
             imageView.confirmSelected = { [weak self] in
                 self?.extractImageLayerFromCanvasImageView()
             }
@@ -19,14 +18,12 @@ final class InnerCanvasView: UIImageView {
     
     var tool: DrawingTool = InkingTool(inkType: .pen, color: .black) {
         didSet {
-            inkingContext.reset()
             eraserContext.reset()
             lassoContext.reset()
         }
     }
     
-    private let eventController = CanvasEventController()
-    private let inkingContext: InkingContext = .init()
+    private var inkingContexts: [InkingContext] = []
     private let eraserContext: EraserContext = .init()
     private let lassoContext: LassoContext = .init()
 
@@ -108,29 +105,20 @@ final class InnerCanvasView: UIImageView {
         )
         
         layer.frame = frame
+        layer.transform = imageView.layer.transform
         layer.contents = image.cgImage
         imageView.removeFromSuperview()
         self.layer.addSublayer(layer)
-        self.eventController.pushDrawingLineEvent(lineLayer: layer)
         self.canvasImageView = nil
-    }
-
-    func captureBackground() -> UIImage? {
-        let format = UIGraphicsImageRendererFormat()
-        format.scale = UIScreen.main.scale
-        let render = UIGraphicsImageRenderer(bounds: bounds, format: format)
-        
-        return render.image { ctx in
-            layer.render(in: ctx.cgContext)
-        }
+        registerUndoImage(imageLayer: layer)
     }
     
     func undo() {
-        eventController.undo()
+        undoManager?.undo()
     }
     
     func redo() {
-        eventController.redo()
+        undoManager?.redo()
     }
 }
 
@@ -139,7 +127,20 @@ private extension InnerCanvasView {
         translatesAutoresizingMaskIntoConstraints = false
         isUserInteractionEnabled = true
         layer.backgroundColor = UIColor.white.cgColor
-        eventController.targetView = self
+    }
+    
+    func registerUndoImage(imageLayer: ImageLayer) {
+        undoManager?.registerUndo(withTarget: self) { [weak self] _ in
+            imageLayer.removeFromSuperlayer()
+            self?.registerRedoImage(imageLayer: imageLayer)
+        }
+    }
+    
+    func registerRedoImage(imageLayer: ImageLayer) {
+        undoManager?.registerUndo(withTarget: self) { [weak self] target in
+            target.layer.addSublayer(imageLayer)
+            self?.registerUndoImage(imageLayer: imageLayer)
+        }
     }
 }
 
@@ -148,32 +149,46 @@ private extension InnerCanvasView {
 private extension InnerCanvasView {
     func inkingBegan(touches: Set<UITouch>) {
         guard let touch = touches.first else { return }
+        inkingContexts.append(.init())
 
         let pathLayer = DrawingLayer()
-        inkingContext.pathLayer = pathLayer
-        inkingContext.pathLayer?.use(tool: tool)
-        inkingContext.points = [touch.location(in: self)]
+        inkingContexts.last?.pathLayer = pathLayer
+        inkingContexts.last?.pathLayer?.use(tool: tool)
+        inkingContexts.last?.points = [touch.location(in: self)]
         
         layer.addSublayer(pathLayer)
     }
 
     func inkingMoved(touches: Set<UITouch>, event: UIEvent?) {
-        guard let touch = touches.first, !inkingContext.points.isEmpty else { return }
+        guard let touch = touches.first else { return }
 
         let touches = event?.coalescedTouches(for: touch) ?? [touch]
-        inkingContext.points += touches.map { $0.location(in: self) }
+        inkingContexts.last?.points += touches.map { $0.location(in: self) }
 
         let predictedPoints = event?.predictedTouches(for: touch)?.map { $0.location(in: self) } ?? []
         
-        inkingContext.pathLayer?.path = UIBezierPath.interpolate(points: inkingContext.points + predictedPoints).cgPath
+        inkingContexts.last?.pathLayer?.path = UIBezierPath.interpolate(points: inkingContexts.last!.points + predictedPoints).cgPath
     }
 
     func inkingEnded(touches: Set<UITouch>, event: UIEvent?) {
-        if let inkingLayer = inkingContext.pathLayer {
-            inkingLayer.path = UIBezierPath.interpolate(points: inkingContext.points).cgPath
-            eventController.pushDrawingLineEvent(lineLayer: inkingLayer)
+        if let inkingLayer = inkingContexts.last?.pathLayer {
+            inkingLayer.path = UIBezierPath.interpolate(points: inkingContexts.last!.points).cgPath
+            registerUndoInking(inkingLayer: inkingLayer)
         }
-        inkingContext.reset()
+    }
+    
+    func registerUndoInking(inkingLayer: CAShapeLayer) {
+        undoManager?.registerUndo(withTarget: self) { [weak self] _ in
+            inkingLayer.removeFromSuperlayer()
+            self?.registerRedoInking(inkingLayer: inkingLayer)
+        }
+    }
+    
+    func registerRedoInking(inkingLayer: CAShapeLayer) {
+        undoManager?.registerUndo(withTarget: self) { [weak self] target in
+            target.layer.addSublayer(inkingLayer)
+            self?.registerUndoInking(inkingLayer: inkingLayer)
+        }
     }
 }
 
@@ -185,43 +200,53 @@ extension InnerCanvasView {
         
         let eraserLayer = EraserLayer()
         eraserContext.eraserLayer = eraserLayer
-        eraserContext.eraserLayer?.use(tool: tool)
-        eraserContext.points = [touch.location(in: self)]
+        eraserLayer.position = touch.location(in: self)
         
         layer.addSublayer(eraserLayer)
     }
     
     func eraserMoved(touches: Set<UITouch>, event: UIEvent?) {
-        guard let touch = touches.first,
-            !eraserContext.points.isEmpty else { return }
+        guard let touch = touches.first else { return }
 
-        eraserContext.points += [touch.location(in: self)]
+        let location = touch.location(in: self)
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
+        eraserContext.eraserLayer?.position = location
+        CATransaction.commit()
+        
+        let rect = CGRect(
+            x: location.x - 20,
+            y: location.y - 20,
+            width: 40,
+            height: 40
+        )
 
-        let path = UIBezierPath()
-        path.move(to: eraserContext.points[0])
-        eraserContext.points.forEach {
-            path.addLine(to: $0)
+        for context in inkingContexts {
+            if context.points.first(where: { rect.contains($0) }) != nil {
+                guard let layer = context.pathLayer, layer.superlayer != nil else { continue }
+                
+                layer.removeFromSuperlayer()
+                registerUndoEraser(inkingLayer: layer)
+            }
         }
-        eraserContext.eraserLayer?.path = path.cgPath
     }
     
     func eraserEnded(touches: Set<UITouch>, event: UIEvent?) {
-        guard let eraserLayer = eraserContext.eraserLayer else { return }
-        
-        layer.sublayers?.forEach {
-            guard let path = ($0 as? CAShapeLayer)?.path,
-                let eraserPath = eraserLayer.path,
-                $0 !== eraserLayer else { return }
-
-            if path.boundingBoxOfPath.intersects(eraserPath.boundingBoxOfPath) {
-                let copyLayer = CAShapeLayer()
-                copyLayer.use(tool: tool)
-                copyLayer.path = eraserLayer.path
-                copyLayer.backgroundColor = UIColor.white.cgColor
-                $0.addSublayer(copyLayer)
-            }
-        }
         eraserContext.reset()
+    }
+    
+    func registerUndoEraser(inkingLayer: CAShapeLayer) {
+        undoManager?.registerUndo(withTarget: self) { [weak self] target in
+            target.layer.addSublayer(inkingLayer)
+            self?.registerRedoEraser(inkingLayer: inkingLayer)
+        }
+    }
+    
+    func registerRedoEraser(inkingLayer: CAShapeLayer) {
+        undoManager?.registerUndo(withTarget: self) { [weak self] _ in
+            inkingLayer.removeFromSuperlayer()
+            self?.registerUndoEraser(inkingLayer: inkingLayer)
+        }
     }
 }
 
@@ -231,25 +256,34 @@ extension InnerCanvasView {
     func lassoBegan(touches: Set<UITouch>) {
         guard let location = touches.first?.location(in: self) else { return }
         
-        if lassoContext.lassoClosed {
-            if lassoContext.lassoLayer?.path?.boundingBoxOfPath.contains(location) ?? false {
-                lassoContext.moveCurrentPotision = location
-            }
-
-        } else {
+        switch lassoContext.mode {
+        case .search:
             let lassoLayer = CAShapeLayer()
             lassoLayer.use(tool: tool)
             layer.addSublayer(lassoLayer)
 
             lassoContext.lassoLayer = lassoLayer
             lassoContext.points = [location]
+            
+        case .move:
+            if lassoContext.lassoLayer?.path?.boundingBoxOfPath.contains(location) ?? false {
+                lassoContext.moveCurrentPotision = location
+            }
         }
     }
 
     func lassoMoved(touches: Set<UITouch>, event: UIEvent?) {
         guard let touch = touches.first else { return }
         
-        if lassoContext.lassoClosed {
+        switch lassoContext.mode {
+        case .search:
+            let touches = event?.coalescedTouches(for: touch) ?? [touch]
+            lassoContext.points += touches.map { $0.location(in: self) }
+            
+            let predictedPoints = event?.predictedTouches(for: touch)?.map { $0.location(in: self) } ?? []
+            lassoContext.lassoLayer?.path = UIBezierPath.interpolate(points: lassoContext.points + predictedPoints).cgPath
+
+        case .move:
             guard let lastLocation = lassoContext.moveCurrentPotision else { return }
 
             let location = touch.location(in: self)
@@ -262,51 +296,88 @@ extension InnerCanvasView {
 
             CATransaction.begin()
             CATransaction.setDisableActions(true)
-            (lassoContext.lassoEnclosedLayers + [lassoContext.lassoLayer]).forEach {
-                $0?.frame.origin.x += dx
-                $0?.frame.origin.y += dy
+            lassoContext.lassoEnclosedInkingContexts.forEach {
+                $0.pathLayer?.frame.origin.x += dx
+                $0.pathLayer?.frame.origin.y += dy
             }
+            lassoContext.lassoLayer?.frame.origin.x += dx
+            lassoContext.lassoLayer?.frame.origin.y += dy
             CATransaction.commit()
-
-        } else {
-            let touches = event?.coalescedTouches(for: touch) ?? [touch]
-            lassoContext.points += touches.map { $0.location(in: self) }
-
-            let predictedPoints = event?.predictedTouches(for: touch)?.map { $0.location(in: self) } ?? []
-            lassoContext.lassoLayer?.path = UIBezierPath.interpolate(points: lassoContext.points + predictedPoints).cgPath
         }
     }
 
     func lassoEnded(touches: Set<UITouch>, event: UIEvent?) {
-        if lassoContext.lassoClosed {
-            eventController.pushLassoEvent(context: lassoContext)
-            lassoContext.reset()
-
-        } else {
+        switch lassoContext.mode {
+        case .search:
             let path = UIBezierPath.interpolate(points: lassoContext.points, closed: true).cgPath
             lassoContext.lassoLayer?.path = path
             lassoContext.points = []
-
-            lassoContext.lassoEnclosedLayers = layer.sublayers?.filter {
-                let isSelf = $0 === lassoContext.lassoLayer
-                let enclosedShapeLayersExist = ($0 as? CAShapeLayer)?.movedBoundingBox.intersects(path.boundingBoxOfPath) ?? false
-                let enclosedImageLayersExist = ($0 as? ImageLayer)?.frame.intersects(path.boundingBoxOfPath) ?? false
-                return !isSelf && (enclosedShapeLayersExist || enclosedImageLayersExist)
-                } ?? []
-
-            if lassoContext.lassoEnclosedLayers.isEmpty {
+            
+            let targetContexts = inkingContexts.filter {
+                $0.points.first(where: { path.contains($0) }) != nil
+            }
+            
+            lassoContext.lassoEnclosedInkingContexts = targetContexts
+            
+            if lassoContext.lassoEnclosedInkingContexts.isEmpty {
                 lassoContext.lassoLayer?.removeFromSuperlayer()
                 
             } else {
-                lassoContext.lassoClosed = true
+                lassoContext.mode = .move
                 
                 let animation = CABasicAnimation(keyPath: "lineDashPhase")
-                animation.fromValue = 0
-                animation.toValue = 16
+                animation.fromValue = 16
+                animation.toValue = 0
                 animation.duration = 0.2
                 animation.repeatCount = .infinity
                 lassoContext.lassoLayer?.add(animation, forKey: nil)
             }
+        
+        case .move:
+            lassoContext.lassoEnclosedInkingContexts.forEach {
+                for i in 0..<$0.points.count {
+                    $0.points[i].x += lassoContext.dx
+                    $0.points[i].y += lassoContext.dy
+                }
+            }
+            
+            registerUndoLasso(
+                enclosedInkingContexts: lassoContext.lassoEnclosedInkingContexts,
+                dx: lassoContext.dx,
+                dy: lassoContext.dy
+            )
+            lassoContext.reset()
+        }
+    }
+    
+    func registerUndoLasso(enclosedInkingContexts: [InkingContext], dx: CGFloat, dy: CGFloat) {
+        undoManager?.registerUndo(withTarget: self) { [weak self] _ in
+            enclosedInkingContexts.forEach {
+                for i in 0..<$0.points.count {
+                    $0.points[i].x -= dx
+                    $0.points[i].y -= dy
+                }
+                
+                $0.pathLayer?.frame.origin.x -= dx
+                $0.pathLayer?.frame.origin.y -= dy
+            }
+            self?.registerRedoLasso(enclosedInkingContexts: enclosedInkingContexts, dx: dx, dy: dy)
+        }
+    }
+    
+    func registerRedoLasso(enclosedInkingContexts: [InkingContext], dx: CGFloat, dy: CGFloat) {
+        undoManager?.registerUndo(withTarget: self) { [weak self] _ in
+            enclosedInkingContexts.forEach {
+                for i in 0..<$0.points.count {
+                    $0.points[i].x += dx
+                    $0.points[i].y += dy
+                }
+                
+                $0.pathLayer?.frame.origin.x += dx
+                $0.pathLayer?.frame.origin.y += dy
+            }
+            
+            self?.registerUndoLasso(enclosedInkingContexts: enclosedInkingContexts, dx: dx, dy: dy)
         }
     }
 }
