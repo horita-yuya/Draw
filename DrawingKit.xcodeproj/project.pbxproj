@@ -22,6 +22,7 @@
 		81B25899243727A0007D2ABE /* InkingContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B25898243727A0007D2ABE /* InkingContext.swift */; };
 		81B258A5243B5EB6007D2ABE /* PKInkingToolExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B258A4243B5EB6007D2ABE /* PKInkingToolExt.swift */; };
 		81B258A7243B5ED6007D2ABE /* PKEraserToolExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B258A6243B5ED6007D2ABE /* PKEraserToolExt.swift */; };
+		81C5749B2477963900F739CD /* CGRectExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C5749A2477963900F739CD /* CGRectExt.swift */; };
 		FAA4D3A82433888A008049EB /* InnerCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA4D3A72433888A008049EB /* InnerCanvasView.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		81B25898243727A0007D2ABE /* InkingContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InkingContext.swift; sourceTree = "<group>"; };
 		81B258A4243B5EB6007D2ABE /* PKInkingToolExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKInkingToolExt.swift; sourceTree = "<group>"; };
 		81B258A6243B5ED6007D2ABE /* PKEraserToolExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PKEraserToolExt.swift; sourceTree = "<group>"; };
+		81C5749A2477963900F739CD /* CGRectExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRectExt.swift; sourceTree = "<group>"; };
 		FAA4D3A72433888A008049EB /* InnerCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCanvasView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,6 +115,7 @@
 				64AC441024343D04009E8BD6 /* UIViewExt.swift */,
 				64AC443224358217009E8BD6 /* UIBezierPathExt.swift */,
 				64AC44342435823C009E8BD6 /* CAShapeLayerExt.swift */,
+				81C5749A2477963900F739CD /* CGRectExt.swift */,
 				81B258A4243B5EB6007D2ABE /* PKInkingToolExt.swift */,
 				81B258A6243B5ED6007D2ABE /* PKEraserToolExt.swift */,
 			);
@@ -212,6 +215,7 @@
 				64AC441124343D04009E8BD6 /* UIViewExt.swift in Sources */,
 				81B258A7243B5ED6007D2ABE /* PKEraserToolExt.swift in Sources */,
 				64AC44352435823C009E8BD6 /* CAShapeLayerExt.swift in Sources */,
+				81C5749B2477963900F739CD /* CGRectExt.swift in Sources */,
 				64AC43FB24333A41009E8BD6 /* CanvasView.swift in Sources */,
 				FAA4D3A82433888A008049EB /* InnerCanvasView.swift in Sources */,
 				64AC440024333A5E009E8BD6 /* EraserTool.swift in Sources */,

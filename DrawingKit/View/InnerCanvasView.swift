@@ -111,6 +111,11 @@ final class InnerCanvasView: UIImageView {
         self.layer.addSublayer(layer)
         self.canvasImageView = nil
         registerUndoImage(imageLayer: layer)
+        
+        let context = InkingContext()
+        context.imageLayer = layer
+        context.points = layer.frame.convertToPoints()
+        inkingContexts.append(context)
     }
     
     func undo() {
@@ -228,6 +233,13 @@ extension InnerCanvasView {
                 layer.removeFromSuperlayer()
                 registerUndoEraser(inkingLayer: layer)
             }
+            
+            if let imageLayer = context.imageLayer,
+                imageLayer.superlayer != nil,
+                imageLayer.frame.intersects(rect) {
+                imageLayer.removeFromSuperlayer()
+                registerUndoEraser(inkingLayer: imageLayer)
+            }
         }
     }
     
@@ -235,14 +247,14 @@ extension InnerCanvasView {
         eraserContext.reset()
     }
     
-    func registerUndoEraser(inkingLayer: CAShapeLayer) {
+    func registerUndoEraser(inkingLayer: CALayer) {
         undoManager?.registerUndo(withTarget: self) { [weak self] target in
             target.layer.addSublayer(inkingLayer)
             self?.registerRedoEraser(inkingLayer: inkingLayer)
         }
     }
     
-    func registerRedoEraser(inkingLayer: CAShapeLayer) {
+    func registerRedoEraser(inkingLayer: CALayer) {
         undoManager?.registerUndo(withTarget: self) { [weak self] _ in
             inkingLayer.removeFromSuperlayer()
             self?.registerUndoEraser(inkingLayer: inkingLayer)
@@ -299,6 +311,8 @@ extension InnerCanvasView {
             lassoContext.lassoEnclosedInkingContexts.forEach {
                 $0.pathLayer?.frame.origin.x += dx
                 $0.pathLayer?.frame.origin.y += dy
+                $0.imageLayer?.frame.origin.x += dx
+                $0.imageLayer?.frame.origin.y += dy
             }
             lassoContext.lassoLayer?.frame.origin.x += dx
             lassoContext.lassoLayer?.frame.origin.y += dy
@@ -360,6 +374,8 @@ extension InnerCanvasView {
                 
                 $0.pathLayer?.frame.origin.x -= dx
                 $0.pathLayer?.frame.origin.y -= dy
+                $0.imageLayer?.frame.origin.x -= dx
+                $0.imageLayer?.frame.origin.y -= dy
             }
             self?.registerRedoLasso(enclosedInkingContexts: enclosedInkingContexts, dx: dx, dy: dy)
         }
@@ -375,6 +391,8 @@ extension InnerCanvasView {
                 
                 $0.pathLayer?.frame.origin.x += dx
                 $0.pathLayer?.frame.origin.y += dy
+                $0.imageLayer?.frame.origin.x += dx
+                $0.imageLayer?.frame.origin.y += dy
             }
             
             self?.registerUndoLasso(enclosedInkingContexts: enclosedInkingContexts, dx: dx, dy: dy)
