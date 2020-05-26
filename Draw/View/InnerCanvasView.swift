@@ -117,14 +117,6 @@ final class InnerCanvasView: UIImageView {
         context.points = layer.frame.convertToPoints()
         inkingContexts.append(context)
     }
-    
-    func undo() {
-        undoManager?.undo()
-    }
-    
-    func redo() {
-        undoManager?.redo()
-    }
 }
 
 private extension InnerCanvasView {

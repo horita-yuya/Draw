@@ -92,22 +92,28 @@ public class CanvasView: UIView {
             canvas.image = image
         }
     }
-    
-    public func undo() {
+   
+    @discardableResult
+    public func undo() -> Bool {
         if #available(iOS 13, *), usePencilKitIfPossible {
             pkCanvas.undoManager?.undo()
+            return pkCanvas.undoManager?.canUndo ?? false
             
         } else {
-            canvas.undo()
+            canvas.undoManager?.undo()
+            return canvas.undoManager?.canUndo ?? false
         }
     }
-    
-    public func redo() {
+   
+    @discardableResult
+    public func redo() -> Bool {
         if #available(iOS 13, *), usePencilKitIfPossible {
             pkCanvas.undoManager?.redo()
+            return pkCanvas.undoManager?.canRedo ?? false
             
         } else {
-            canvas.redo()
+            canvas.undoManager?.redo()
+            return canvas.undoManager?.canRedo ?? false
         }
     }
 }
