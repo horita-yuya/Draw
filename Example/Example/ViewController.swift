@@ -15,11 +15,11 @@ final class ViewController: UIViewController {
     }
     
     @IBAction func undo(_ sender: Any) {
-        canvasView.undo()
+        canvasView.undoManager?.undo()
     }
     
     @IBAction func redo(_ sender: Any) {
-        canvasView.redo()
+        canvasView.undoManager?.redo()
     }
 }
 

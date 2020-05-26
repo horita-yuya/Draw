@@ -93,39 +93,6 @@ public class CanvasView: UIView {
         }
     }
    
-    public func undo() {
-        if #available(iOS 13, *), usePencilKitIfPossible {
-            pkCanvas.undoManager?.undo()
-            
-        } else {
-            canvas.undoManager?.undo()
-        }
-    }
-   
-    public func redo() {
-        if #available(iOS 13, *), usePencilKitIfPossible {
-            pkCanvas.undoManager?.redo()
-
-        } else {
-            canvas.undoManager?.redo()
-        }
-    }
-  
-    public func canUndo() -> Bool {
-        if #available(iOS 13, *), usePencilKitIfPossible {
-            return pkCanvas.undoManager?.canUndo ?? false
-        } else {
-            return canvas.undoManager?.canUndo ?? false
-        }
-    }
-    
-    public func canRedo() -> Bool {
-        if #available(iOS 13, *), usePencilKitIfPossible {
-            return pkCanvas.undoManager?.canRedo ?? false
-        } else {
-            return canvas.undoManager?.canRedo ?? false
-        }
-    }
     public func reset() {
         if #available(iOS 13, *), usePencilKitIfPossible {
             
