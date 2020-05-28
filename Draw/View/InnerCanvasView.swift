@@ -1,6 +1,4 @@
 import UIKit
-import func AVFoundation.AVMakeRect
-import MetalKit
 
 private final class ImageLayer: CALayer {}
 
@@ -38,10 +36,9 @@ final class InnerCanvasView: UIImageView {
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if canvasImageView != nil, let location = touches.first?.location(in: self) {
-            canvasImageView?.center = location
-            
-        } else if tool is InkingTool {
+        guard canvasImageView == nil else { return }
+        
+        if tool is InkingTool {
             inkingBegan(touches: touches)
             
         } else if tool is EraserTool {
@@ -53,10 +50,9 @@ final class InnerCanvasView: UIImageView {
     }
 
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if canvasImageView != nil, let location = touches.first?.location(in: self) {
-            canvasImageView?.center = location
-            
-        } else if tool is InkingTool {
+        guard canvasImageView == nil else { return }
+        
+        if tool is InkingTool {
             inkingMoved(touches: touches, event: event)
             
         } else if tool is EraserTool {
@@ -68,10 +64,9 @@ final class InnerCanvasView: UIImageView {
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if canvasImageView != nil, let location = touches.first?.location(in: self) {
-            canvasImageView?.center = location
-            
-        } else if tool is InkingTool {
+        guard canvasImageView == nil else { return }
+        
+        if tool is InkingTool {
             inkingEnded(touches: touches, event: event)
             
         } else if tool is EraserTool {
@@ -95,18 +90,19 @@ final class InnerCanvasView: UIImageView {
         guard let imageView = canvasImageView, let image = imageView.imageView.image else { return }
         
         let layer = ImageLayer()
-        let imageRect = AVMakeRect(aspectRatio: image.size, insideRect: imageView.imageView.frame)
-        
-        let frame = CGRect(
-            x: imageView.frame.origin.x + imageRect.origin.x,
-            y: imageView.frame.origin.y + imageRect.origin.y,
-            width: imageRect.width,
-            height: imageRect.height
-        )
-        
-        layer.frame = frame
-        layer.transform = imageView.layer.transform
+
         layer.contents = image.cgImage
+        
+        let transform = imageView.layer.transform
+        imageView.layer.transform = CATransform3DIdentity
+        
+        layer.bounds = .init(origin: .zero, size: imageView.imageView.image?.size ?? .zero)
+        layer.position = imageView.layer.position
+        
+        let imagePoints = layer.frame.convertToPoints()
+        let center = layer.position
+        layer.transform = transform
+        
         imageView.removeFromSuperview()
         self.layer.addSublayer(layer)
         self.canvasImageView = nil
@@ -114,7 +110,13 @@ final class InnerCanvasView: UIImageView {
         
         let context = InkingContext()
         context.imageLayer = layer
-        context.points = layer.frame.convertToPoints()
+        context.points = imagePoints.map {
+            let translateToOrigin = CGAffineTransform(translationX: -center.x, y: -center.y)
+            let transform = translateToOrigin
+                .concatenating(CATransform3DGetAffineTransform(transform))
+                .concatenating(translateToOrigin.inverted())
+            return $0.applying(transform)
+        }
         inkingContexts.append(context)
     }
 }
@@ -295,8 +297,16 @@ extension InnerCanvasView {
             lassoContext.lassoEnclosedInkingContexts.forEach {
                 $0.pathLayer?.frame.origin.x += dx
                 $0.pathLayer?.frame.origin.y += dy
-                $0.imageLayer?.frame.origin.x += dx
-                $0.imageLayer?.frame.origin.y += dy
+                
+                if let layer = $0.imageLayer {
+                    let transform = layer.transform
+                    layer.transform = CATransform3DIdentity
+                    
+                    layer.frame.origin.x += dx
+                    layer.frame.origin.y += dy
+                    
+                    layer.transform = transform
+                }
             }
             lassoContext.lassoLayer?.frame.origin.x += dx
             lassoContext.lassoLayer?.frame.origin.y += dy

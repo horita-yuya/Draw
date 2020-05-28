@@ -1,7 +1,7 @@
 import UIKit
 
 extension CGRect {
-    func convertToPoints(bin: Int = 8) -> [CGPoint] {
+    func convertToPoints(bin: Int = 16) -> [CGPoint] {
         let gapX = (maxX - minX) / .init(bin)
         let gapY = (maxY - minY) / .init(bin)
         
