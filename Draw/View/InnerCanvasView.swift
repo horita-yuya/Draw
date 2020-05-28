@@ -368,8 +368,10 @@ extension InnerCanvasView {
                 
                 $0.pathLayer?.frame.origin.x -= dx
                 $0.pathLayer?.frame.origin.y -= dy
-                $0.imageLayer?.frame.origin.x -= dx
-                $0.imageLayer?.frame.origin.y -= dy
+                
+                if let imageLayer = $0.imageLayer {
+                    imageLayer.transform = CATransform3DConcat(imageLayer.transform, CATransform3DMakeTranslation(-dx, -dy, 0))
+                }
             }
             self?.registerRedoLasso(enclosedInkingContexts: enclosedInkingContexts, dx: dx, dy: dy)
         }
@@ -385,8 +387,10 @@ extension InnerCanvasView {
                 
                 $0.pathLayer?.frame.origin.x += dx
                 $0.pathLayer?.frame.origin.y += dy
-                $0.imageLayer?.frame.origin.x += dx
-                $0.imageLayer?.frame.origin.y += dy
+                
+                if let imageLayer = $0.imageLayer {
+                    imageLayer.transform = CATransform3DConcat(imageLayer.transform, CATransform3DMakeTranslation(dx, dy, 0))
+                }
             }
             
             self?.registerUndoLasso(enclosedInkingContexts: enclosedInkingContexts, dx: dx, dy: dy)
