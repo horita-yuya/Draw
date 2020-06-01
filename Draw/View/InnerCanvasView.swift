@@ -119,6 +119,14 @@ final class InnerCanvasView: UIImageView {
         }
         inkingContexts.append(context)
     }
+    
+    func reset() {
+        layer.sublayers?.forEach { $0.removeFromSuperlayer() }
+        undoManager?.removeAllActions()
+        inkingContexts = []
+        eraserContext.reset()
+        lassoContext.reset()
+    }
 }
 
 private extension InnerCanvasView {

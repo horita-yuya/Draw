@@ -97,8 +97,7 @@ public class CanvasView: UIView {
         if #available(iOS 13, *), usePencilKitIfPossible {
             
         } else {
-            canvas.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
-            canvas.undoManager?.removeAllActions()
+            canvas.reset()
         }
     }
 }
