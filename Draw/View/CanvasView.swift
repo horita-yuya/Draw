@@ -60,6 +60,16 @@ public class CanvasView: UIView {
         }
     }
     
+    public var backgroundImageView: UIImageView? {
+        get {
+            if #available(iOS 13, *), usePencilKitIfPossible {
+                return nil
+            } else {
+                return canvas
+            }
+        }
+    }
+    
     public override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -85,14 +95,6 @@ public class CanvasView: UIView {
         }
     }
     
-    public func addBackgroundImage(image: UIImage?) {
-        if #available(iOS 13, *), usePencilKitIfPossible {
-            
-        } else {
-            canvas.image = image
-        }
-    }
-   
     public func reset() {
         if #available(iOS 13, *), usePencilKitIfPossible {
             
