@@ -3,7 +3,7 @@ import UIKit
 private final class ImageLayer: CALayer {}
 
 final class InnerCanvasView: UIImageView {
-    var canvasImageView: CanvasImageViewProtocol? {
+    weak var canvasImageView: CanvasImageViewProtocol? {
         didSet {
             guard let imageView = canvasImageView else { return }
             oldValue?.removeFromSuperview()

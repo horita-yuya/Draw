@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'Draw'
-  s.version          = '0.2.4'
+  s.version          = '0.2.5'
   s.summary          = 'Drawing library for Apple platform.'
 
   s.description      = <<-DESC
