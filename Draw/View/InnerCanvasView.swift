@@ -3,23 +3,14 @@ import UIKit
 private final class ImageLayer: CALayer {}
 
 final class InnerCanvasView: UIImageView {
-    weak var canvasImageView: CanvasImageViewProtocol? {
-        didSet {
-            guard let imageView = canvasImageView else { return }
-            oldValue?.removeFromSuperview()
-            addSubview(imageView)
-            imageView.confirmSelected = { [weak self] in
-                self?.extractImageLayerFromCanvasImageView()
-            }
-        }
-    }
-    
     var tool: DrawingTool = InkingTool(inkType: .pen, color: .black) {
         didSet {
             eraserContext.reset()
             lassoContext.reset()
         }
     }
+    
+    private var isEditingImage: Bool = false
     
     private var inkingContexts: [InkingContext] = []
     private let eraserContext: EraserContext = .init()
@@ -36,7 +27,7 @@ final class InnerCanvasView: UIImageView {
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard canvasImageView == nil else { return }
+        guard !isEditingImage else { return }
         
         if tool is InkingTool {
             inkingBegan(touches: touches)
@@ -50,7 +41,7 @@ final class InnerCanvasView: UIImageView {
     }
 
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard canvasImageView == nil else { return }
+        guard !isEditingImage else { return }
         
         if tool is InkingTool {
             inkingMoved(touches: touches, event: event)
@@ -64,7 +55,7 @@ final class InnerCanvasView: UIImageView {
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard canvasImageView == nil else { return }
+        guard !isEditingImage else { return }
         
         if tool is InkingTool {
             inkingEnded(touches: touches, event: event)
@@ -86,8 +77,29 @@ final class InnerCanvasView: UIImageView {
         view.center = center
     }
     
-    func extractImageLayerFromCanvasImageView() {
-        guard let imageView = canvasImageView, let image = imageView.imageView.image else { return }
+    func add(imageView: CanvasImageViewProtocol) {
+        addSubview(imageView)
+        isEditingImage = true
+    }
+
+    func extractAllImage() {
+        subviews.forEach {
+            guard let imageView = ($0 as? CanvasImageViewProtocol) else { return }
+            extractImageLayer(from: imageView)
+        }
+        isEditingImage = false
+    }
+    
+    func reset() {
+        layer.sublayers?.forEach { $0.removeFromSuperlayer() }
+        undoManager?.removeAllActions()
+        inkingContexts = []
+        eraserContext.reset()
+        lassoContext.reset()
+    }
+    
+    private func extractImageLayer(from imageView: CanvasImageViewProtocol) {
+        guard let image = imageView.imageView.image else { return }
         
         let layer = ImageLayer()
 
@@ -105,7 +117,6 @@ final class InnerCanvasView: UIImageView {
         
         imageView.removeFromSuperview()
         self.layer.addSublayer(layer)
-        self.canvasImageView = nil
         registerUndoImage(imageLayer: layer)
         
         let context = InkingContext()
@@ -118,14 +129,6 @@ final class InnerCanvasView: UIImageView {
             return $0.applying(transform)
         }
         inkingContexts.append(context)
-    }
-    
-    func reset() {
-        layer.sublayers?.forEach { $0.removeFromSuperlayer() }
-        undoManager?.removeAllActions()
-        inkingContexts = []
-        eraserContext.reset()
-        lassoContext.reset()
     }
 }
 

@@ -42,24 +42,6 @@ public class CanvasView: UIView {
         }
     }
     
-    public var canvasImageView: CanvasImageViewProtocol? {
-        get {
-            if #available(iOS 13, *), usePencilKitIfPossible {
-                // This is not supported
-                return nil
-            } else {
-                return canvas.canvasImageView
-            }
-        }
-        set {
-            if #available(iOS 13, *), usePencilKitIfPossible {
-                // Do nothing
-            } else {
-                canvas.canvasImageView = newValue
-            }
-        }
-    }
-    
     public var backgroundImageView: UIImageView? {
         get {
             if #available(iOS 13, *), usePencilKitIfPossible {
@@ -67,6 +49,20 @@ public class CanvasView: UIView {
             } else {
                 return canvas
             }
+        }
+    }
+    
+    public func determineImagePosition() {
+        if #available(iOS 13, *), usePencilKitIfPossible {
+        } else {
+            canvas.extractAllImage()
+        }
+    }
+    
+    public func add(imageView: CanvasImageViewProtocol) {
+        if #available(iOS 13, *), usePencilKitIfPossible {
+        } else {
+            canvas.add(imageView: imageView)
         }
     }
     
