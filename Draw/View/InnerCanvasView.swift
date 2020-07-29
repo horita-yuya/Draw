@@ -96,7 +96,7 @@ final class InnerCanvasView: UIImageView {
         let transform = imageView.layer.transform
         imageView.layer.transform = CATransform3DIdentity
         
-        layer.bounds = .init(origin: .zero, size: imageView.imageView.image?.size ?? .zero)
+        layer.bounds = .init(origin: .zero, size: imageView.imageView.frame.size)
         layer.position = imageView.layer.position
         
         let imagePoints = layer.frame.convertToPoints()
