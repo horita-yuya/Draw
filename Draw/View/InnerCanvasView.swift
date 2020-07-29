@@ -83,6 +83,8 @@ final class InnerCanvasView: UIImageView {
     }
 
     func extractAllImage() {
+        guard isEditingImage else { return }
+        
         subviews.forEach {
             guard let imageView = ($0 as? CanvasImageViewProtocol) else { return }
             extractImageLayer(from: imageView)
