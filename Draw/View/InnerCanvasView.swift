@@ -213,7 +213,7 @@ extension InnerCanvasView {
     }
     
     func eraserMoved(touches: Set<UITouch>, event: UIEvent?) {
-        guard let touch = touches.first else { return }
+        guard let touch = touches.first, let eraser = tool as? EraserTool else { return }
 
         let location = touch.location(in: self)
         CATransaction.begin()
@@ -229,7 +229,7 @@ extension InnerCanvasView {
                     layer.removeFromSuperlayer()
                     registerUndoEraser(inkingLayer: layer)
                 }
-                if let layer = context.imageLayer, layer.superlayer != nil {
+                if eraser.canEraseImage, let layer = context.imageLayer, layer.superlayer != nil {
                     layer.removeFromSuperlayer()
                     registerUndoEraser(inkingLayer: layer)
                 }
