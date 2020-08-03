@@ -27,6 +27,7 @@ final class InnerCanvasView: UIImageView {
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        checkCanvasImageViewExistingIfNeeded()
         guard !isEditingImage else { return }
         
         if tool is InkingTool {
@@ -98,6 +99,17 @@ final class InnerCanvasView: UIImageView {
         inkingContexts = []
         eraserContext.reset()
         lassoContext.reset()
+    }
+    
+    private func checkCanvasImageViewExistingIfNeeded() {
+        guard isEditingImage else { return }
+        
+        for subview in subviews {
+            if subview is CanvasImageViewProtocol {
+                return isEditingImage = true
+            }
+        }
+        isEditingImage = false
     }
     
     private func extractImageLayer(from imageView: CanvasImageViewProtocol) {
