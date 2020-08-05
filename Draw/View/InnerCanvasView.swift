@@ -94,6 +94,8 @@ final class InnerCanvasView: UIImageView {
     }
     
     func reset() {
+        isEditingImage = false
+        subviews.forEach { ($0 as? CanvasImageViewProtocol)?.removeFromSuperview() }
         layer.sublayers?.forEach { $0.removeFromSuperlayer() }
         undoManager?.removeAllActions()
         inkingContexts = []
