@@ -1,4 +1,4 @@
-# DrawingKit
+# Draw
 
 ![demo](Resources/demo.gif)
 
