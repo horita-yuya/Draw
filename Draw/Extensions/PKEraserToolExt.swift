@@ -6,6 +6,7 @@ extension PKEraserTool.EraserType {
         switch self {
         case .bitmap: return .bitmap
         case .vector: return .vector
+        case .fixedWidthBitmap: return .bitmap
         }
     }
 }
