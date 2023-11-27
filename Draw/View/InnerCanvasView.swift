@@ -10,6 +10,8 @@ final class InnerCanvasView: UIImageView {
         }
     }
     
+    var availableTouches: Set<UITouch.TouchType> = .init()
+    
     private var isEditingImage: Bool = false
     
     private var inkingContexts: [InkingContext] = []
@@ -175,8 +177,10 @@ private extension InnerCanvasView {
 private extension InnerCanvasView {
     func inkingBegan(touches: Set<UITouch>) {
         guard let touch = touches.first else { return }
+        guard checkTouchAvailability(touch: touch) else { return }
+        
         inkingContexts.append(.init())
-
+        
         let pathLayer = DrawingLayer()
         inkingContexts.last?.pathLayer = pathLayer
         inkingContexts.last?.pathLayer?.use(tool: tool)
@@ -184,19 +188,23 @@ private extension InnerCanvasView {
         
         layer.addSublayer(pathLayer)
     }
-
+    
     func inkingMoved(touches: Set<UITouch>, event: UIEvent?) {
         guard let touch = touches.first else { return }
-
+        guard checkTouchAvailability(touch: touch) else { return }
+        
         let touches = event?.coalescedTouches(for: touch) ?? [touch]
         inkingContexts.last?.points += touches.map { $0.location(in: self) }
-
+        
         let predictedPoints = event?.predictedTouches(for: touch)?.map { $0.location(in: self) } ?? []
         
         inkingContexts.last?.pathLayer?.path = UIBezierPath.interpolate(points: inkingContexts.last!.points + predictedPoints).cgPath
     }
-
+    
     func inkingEnded(touches: Set<UITouch>, event: UIEvent?) {
+        guard let touch = touches.first else { return }
+        guard checkTouchAvailability(touch: touch) else { return }
+        
         if let inkingLayer = inkingContexts.last?.pathLayer {
             inkingLayer.path = UIBezierPath.interpolate(points: inkingContexts.last!.points).cgPath
             registerUndoInking(inkingLayer: inkingLayer)
@@ -215,6 +223,10 @@ private extension InnerCanvasView {
             target.layer.addSublayer(inkingLayer)
             self?.registerUndoInking(inkingLayer: inkingLayer)
         }
+    }
+    
+    func checkTouchAvailability(touch: UITouch) -> Bool {
+        availableTouches.isEmpty || availableTouches.contains(touch.type)
     }
 }
 

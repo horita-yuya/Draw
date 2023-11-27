@@ -52,6 +52,15 @@ public class CanvasView: UIView {
         }
     }
     
+    public var availableTouches: Set<UITouch.TouchType> {
+        get {
+            canvas.availableTouches
+        }
+        set {
+            canvas.availableTouches = newValue
+        }
+    }
+    
     public func determineImagePosition() {
         if #available(iOS 13, *), usePencilKitIfPossible {
         } else {
