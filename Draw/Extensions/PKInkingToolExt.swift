@@ -7,6 +7,7 @@ extension PKInkingTool.InkType {
         case .pen: return .pen
         case .pencil: return .pencil
         case .marker: return .marker
+        default: return .pencil
         }
     }
 }
